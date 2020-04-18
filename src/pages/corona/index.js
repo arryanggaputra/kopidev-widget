@@ -37,7 +37,7 @@ function CoronaContainer() {
 
     const getData = async function () {
       let doFetch = await fetch(
-        "https://api.kawalcovid19.id/v1/api/case/summary",
+        "https://romantic-knuth-c6ede9.netlify.app/.netlify/functions/corona",
         {
           method: "GET",
         }
