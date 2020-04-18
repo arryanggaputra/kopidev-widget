@@ -40,7 +40,7 @@ function CoronaContainer() {
         "https://api.kawalcovid19.id/v1/api/case/summary",
         {
           method: "GET",
-          mode: "cors",
+          mode: "no-cors",
         }
       );
 
