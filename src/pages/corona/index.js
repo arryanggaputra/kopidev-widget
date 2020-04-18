@@ -40,7 +40,6 @@ function CoronaContainer() {
         "https://api.kawalcovid19.id/v1/api/case/summary",
         {
           method: "GET",
-          mode: "no-cors",
         }
       );
 
@@ -73,36 +72,36 @@ function CoronaContainer() {
 
       <h1>Update COVID-19 Indonesia</h1>
 
-      <div class="container">
-        <div class="box">
-          <span class="number cornflowerblue" id="confirmed">
+      <div className="container">
+        <div className="box">
+          <span className="number cornflowerblue" id="confirmed">
             {data.confirmed}
           </span>
-          <span class="label">Terkonfirmasi</span>
+          <span className="label">Terkonfirmasi</span>
         </div>
-        <div class="box">
-          <span class="number orange" id="activeCare">
+        <div className="box">
+          <span className="number orange" id="activeCare">
             {data.activeCare}
           </span>
-          <span class="label">Dirawat</span>
+          <span className="label">Dirawat</span>
         </div>
-        <div class="box">
-          <span class="number green" id="recovered">
+        <div className="box">
+          <span className="number green" id="recovered">
             {data.recovered}
           </span>
-          <span class="label">Sembuh</span>
+          <span className="label">Sembuh</span>
         </div>
-        <div class="box">
-          <span class="number red" id="deceased">
+        <div className="box">
+          <span className="number red" id="deceased">
             {data.deceased}
           </span>
-          <span class="label">Meninggal</span>
+          <span className="label">Meninggal</span>
         </div>
       </div>
 
-      <div class="footer">
-        <span class="info">Pembaruan Terakhir</span>
-        <span class="date" id="metadata">
+      <div className="footer">
+        <span className="info">Pembaruan Terakhir</span>
+        <span className="date" id="metadata">
           {date}
         </span>
       </div>
