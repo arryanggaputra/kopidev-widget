@@ -33,6 +33,8 @@ function CoronaContainer() {
       document.body.classList.add("darkmode");
     }
 
+    document.title = "Widget Kawal Corona Indonesia";
+
     const getData = async function () {
       let doFetch = await fetch(
         "https://api.kawalcovid19.id/v1/api/case/summary",
