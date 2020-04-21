@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 const monthNames = [
   "Januari",
@@ -24,7 +25,7 @@ function CoronaContainer() {
     activeCare: "-",
   });
 
-  const [date, setDate] = useState("-");
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     let isDark = new URLSearchParams(window.location.search).get("dark");
@@ -107,7 +108,16 @@ function CoronaContainer() {
       <div className="footer">
         <span className="info">Pembaruan Terakhir</span>
         <span className="date" id="metadata">
-          {date}
+          {date + " - "}{" "}
+          {date && (
+            <Link
+              to="//kopi.dev/widget-kawal-corona-wordpress-blogspot-statistik/"
+              target="_blank"
+              title="Pasang widget kawal corona"
+            >
+              Pasang Widget
+            </Link>
+          )}
         </span>
       </div>
     </div>

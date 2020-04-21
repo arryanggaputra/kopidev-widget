@@ -33,7 +33,6 @@ body.darkmode {
 .red {
   color: #d8232a;
 }
-
 .container {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
@@ -78,6 +77,9 @@ h1 {
   color: #858a93;
   font-weight: 400 !important;
   text-align: center;
+}
+.footer a {
+  color: inherit;
 }
 .footer .info {
   font-size: 0.7rem;
