@@ -36,24 +36,29 @@ function CoronaContainer() {
     document.title = "Widget Kawal Corona Indonesia";
 
     const getData = async function () {
-      let doFetch = await fetch(
-        "https://romantic-knuth-c6ede9.netlify.app/.netlify/functions/corona",
-        {
-          method: "GET",
-        }
-      );
+      let doFetch = await fetch("https://api.kawalcorona.com/", {
+        method: "GET",
+      });
 
       let result = await doFetch.json();
 
-      setData(result);
+      result.filter((data) => {
+        if (data.attributes.Country_Region === "Indonesia") {
+          setData({
+            confirmed: data.attributes.Confirmed,
+            recovered: data.attributes.Recovered,
+            deceased: data.attributes.Deaths,
+            activeCare: data.attributes.Active,
+          });
+          let _date = new Date(data.attributes.Last_Update);
 
-      let _date = new Date(result.metadata.lastUpdatedAt);
-
-      setDate(
-        `${_date.getUTCDate()} ${
-          monthNames[_date.getMonth()]
-        } ${_date.getFullYear()} ${_date.getHours()}:${_date.getMinutes()}:${_date.getSeconds()}`
-      );
+          setDate(
+            `${_date.getUTCDate()} ${
+              monthNames[_date.getMonth()]
+            } ${_date.getFullYear()} ${_date.getHours()}:${_date.getMinutes()}:${_date.getSeconds()}`
+          );
+        }
+      });
     };
 
     getData();
