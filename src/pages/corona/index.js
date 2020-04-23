@@ -66,7 +66,7 @@ function CoronaContainer() {
   }, []);
 
   return (
-    <div>
+    <div className="maincontainer">
       <link
         href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap"
         rel="stylesheet"
