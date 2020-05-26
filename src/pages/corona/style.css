@@ -62,6 +62,10 @@ body.darkmode {
     --heading-font-size: 1.3rem;
   }
 
+  .box {
+    margin: 0.2rem !important;
+  }
+
   .box .label {
     font-size: 0.65rem !important;
   }
