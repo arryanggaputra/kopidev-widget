@@ -63,6 +63,7 @@ function CoronaContainer() {
             } ${_date.getFullYear()} ${_date.getHours()}:${_date.getMinutes()}:${_date.getSeconds()}`
           );
         }
+        return true;
       });
     };
 
