@@ -17,6 +17,10 @@ const monthNames = [
   "Desember",
 ];
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 function CoronaContainer() {
   const [data, setData] = useState({
     confirmed: "-",
@@ -81,25 +85,25 @@ function CoronaContainer() {
       <div className="container">
         <div className="box">
           <span className="number cornflowerblue" id="confirmed">
-            {data.confirmed}
+            {numberWithCommas(data.confirmed)}
           </span>
           <span className="label">Terkonfirmasi</span>
         </div>
         <div className="box">
           <span className="number orange" id="activeCare">
-            {data.activeCare}
+            {numberWithCommas(data.activeCare)}
           </span>
           <span className="label">Dirawat</span>
         </div>
         <div className="box">
           <span className="number green" id="recovered">
-            {data.recovered}
+            {numberWithCommas(data.recovered)}
           </span>
           <span className="label">Sembuh</span>
         </div>
         <div className="box">
           <span className="number red" id="deceased">
-            {data.deceased}
+            {numberWithCommas(data.deceased)}
           </span>
           <span className="label">Meninggal</span>
         </div>
