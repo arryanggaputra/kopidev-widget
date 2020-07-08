@@ -26,6 +26,31 @@ body {
 
 #root .maincontainer {
   width: 100%;
+  position: relative;
+}
+
+.blink_me {
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.updateBar {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: green;
+  color: white;
+  font-size: 0.7rem;
+  padding: 0.3rem;
+  width: calc(100% - 0.6rem);
+  z-index: 1;
+  text-decoration: none;
+  cursor: pointer;
 }
 body.darkmode {
   --background-color: #21262c;

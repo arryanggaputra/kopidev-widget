@@ -41,28 +41,31 @@ function CoronaContainer() {
     document.title = "Widget Kawal Corona Indonesia";
 
     const getData = async function () {
-      let doFetch = await fetch("https://api.kawalcorona.com/", {
-        method: "GET",
-      });
+      let doFetch = await fetch(
+        "https://romantic-knuth-c6ede9.netlify.app/.netlify/functions/corona",
+        {
+          method: "GET",
+        }
+      );
 
       let result = await doFetch.json();
 
       result.filter((data) => {
-        if (data.attributes.Country_Region === "Indonesia") {
-          setData({
-            confirmed: data.attributes.Confirmed,
-            recovered: data.attributes.Recovered,
-            deceased: data.attributes.Deaths,
-            activeCare: data.attributes.Active,
-          });
-          let _date = new Date(data.attributes.Last_Update);
+        setData({
+          confirmed: data.positif,
+          recovered: data.sembuh,
+          deceased: data.meninggal,
+          activeCare: data.dirawat,
+        });
 
-          setDate(
-            `${_date.getUTCDate()} ${
-              monthNames[_date.getMonth()]
-            } ${_date.getFullYear()} ${_date.getHours()}:${_date.getMinutes()}:${_date.getSeconds()}`
-          );
-        }
+        let _date = new Date();
+        _date.setHours(_date.getHours() - 3);
+
+        setDate(
+          `${_date.getUTCDate()} ${
+            monthNames[_date.getMonth()]
+          } ${_date.getFullYear()} ${_date.getHours()}:${_date.getMinutes()}:${_date.getSeconds()}`
+        );
         return true;
       });
     };
@@ -71,61 +74,72 @@ function CoronaContainer() {
   }, []);
 
   return (
-    <div className="maincontainer">
-      <link
-        href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap"
-        rel="stylesheet"
-      />
+    <>
+      <Link
+        to="//kopi.dev/widget-kawal-corona-wordpress-blogspot-statistik/"
+        target="_blank"
+        title="Pasang widget kawal corona"
+        className="updateBar blink_me"
+      >
+        Versi Terbaru Tersedia, Ayo Update!
+      </Link>
 
-      <h1>Update COVID-19 Indonesia</h1>
+      <div className="maincontainer">
+        <link
+          href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap"
+          rel="stylesheet"
+        />
 
-      <div className="container">
-        <div className="box">
-          <span className="number cornflowerblue" id="confirmed">
-            {numberWithCommas(data.confirmed)}
-          </span>
-          <span className="label">Terkonfirmasi</span>
+        <h1>Update COVID-19 Indonesia</h1>
+
+        <div className="container">
+          <div className="box">
+            <span className="number cornflowerblue" id="confirmed">
+              {numberWithCommas(data.confirmed)}
+            </span>
+            <span className="label">Terkonfirmasi</span>
+          </div>
+          <div className="box">
+            <span className="number orange" id="activeCare">
+              {numberWithCommas(data.activeCare)}
+            </span>
+            <span className="label">Dirawat</span>
+          </div>
+          <div className="box">
+            <span className="number green" id="recovered">
+              {numberWithCommas(data.recovered)}
+            </span>
+            <span className="label">Sembuh</span>
+          </div>
+          <div className="box">
+            <span className="number red" id="deceased">
+              {numberWithCommas(data.deceased)}
+            </span>
+            <span className="label">Meninggal</span>
+          </div>
         </div>
-        <div className="box">
-          <span className="number orange" id="activeCare">
-            {numberWithCommas(data.activeCare)}
+
+        <div className="footer">
+          <span className="info">Pembaruan Terakhir</span>
+          <span className="date" id="metadata">
+            {date + " - "}{" "}
+            {date && (
+              <Link
+                to="//kopi.dev/widget-kawal-corona-wordpress-blogspot-statistik/"
+                target="_blank"
+                title="Pasang widget kawal corona"
+              >
+                Pasang Widget
+              </Link>
+            )}
           </span>
-          <span className="label">Dirawat</span>
-        </div>
-        <div className="box">
-          <span className="number green" id="recovered">
-            {numberWithCommas(data.recovered)}
-          </span>
-          <span className="label">Sembuh</span>
-        </div>
-        <div className="box">
-          <span className="number red" id="deceased">
-            {numberWithCommas(data.deceased)}
-          </span>
-          <span className="label">Meninggal</span>
         </div>
       </div>
-
-      <div className="footer">
-        <span className="info">Pembaruan Terakhir</span>
-        <span className="date" id="metadata">
-          {date + " - "}{" "}
-          {date && (
-            <Link
-              to="//kopi.dev/widget-kawal-corona-wordpress-blogspot-statistik/"
-              target="_blank"
-              title="Pasang widget kawal corona"
-            >
-              Pasang Widget
-            </Link>
-          )}
-        </span>
-      </div>
-    </div>
+    </>
   );
 }
 
